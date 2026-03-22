@@ -2,11 +2,10 @@
 layout: post
 read_time: true
 show_date: true
-title: "Text Manipulation"
+title: "Nginx 로그로 배우는 텍스트 처리"
 date: 2025-11-21
-description: Ubuntu 터미널에서 Text Manipulation으로 Nginx 로그 분석하기 
-img:
-tags: [devops, django, systemd, monitoring, ubuntu]
+description: Ubuntu 터미널에서 텍스트 처리 파이프라인으로 Nginx 로그를 분석하는 방법 정리.
+tags: [devops, linux, nginx, logs, text-processing]
 author: Juwon
 ---
 
@@ -17,13 +16,13 @@ author: Juwon
 - `nginx.conf`, `quizai.service`, `.env` 같은 **설정 파일**
 
 이 텍스트들을 **터미널에서 빠르게 자르고, 골라서, 집계하는 기술**이 바로  
-Ubuntu에서 말하는 **Text Manipulation**입니다.
+Ubuntu에서 말하는 **텍스트 처리(Text Manipulation)** 입니다.
 
 이번 글에서는 실제로 내가 쓴 예시인,
 
 > **“Nginx access 로그에서 많이 요청한 IP TOP 10 뽑기”**
 
-를 기준으로, Text Manipulation 파이프라인을 정리해 봅니다.
+를 기준으로, 텍스트 처리 파이프라인을 정리해 봅니다.
 
 ---
 
@@ -46,7 +45,7 @@ awk '{print $1}' /var/log/nginx/access.log |
   uniq -c |
   sort -nr |
   head
-````
+```
 
 이 한 줄이 하는 일을 단계별로 뜯어서 보면 Text Manipulation의 핵심이 다 들어 있습니다.
 
@@ -164,7 +163,23 @@ awk '{print $1}' /var/log/nginx/access.log
 
 ---
 
-## 4. 이게 왜 DevOps에서 중요한가?
+## 4. 실전 응용 예시
+
+같은 패턴으로 500 에러가 많이 난 URL도 바로 볼 수 있다.
+
+```bash
+awk '$9 ~ /^5/ {print $7}' /var/log/nginx/access.log |
+  sort |
+  uniq -c |
+  sort -nr |
+  head
+```
+
+이 명령은 상태 코드가 5xx인 요청만 고른 뒤, 어떤 URL이 자주 실패했는지 집계한다.
+
+---
+
+## 5. 이게 왜 DevOps에서 중요한가?
 
 이 짧은 파이프라인 하나에 DevOps에서 자주 쓰는 Text Manipulation 개념이 다 들어 있습니다.
 
@@ -185,7 +200,7 @@ awk '{print $1}' /var/log/nginx/access.log
 
 ---
 
-## 5. 정리
+## 6. 정리
 
 * DevOps에서 말하는 **Text Manipulation**은
   단순히 문자열 자르기가 아니라,
@@ -210,5 +225,4 @@ awk '{print $1}' /var/log/nginx/access.log |
 
 이 글에서 정리한 패턴만 익숙해져도,
 Ubuntu 서버에서 로그를 다루는 감각이 훨씬 좋아질 거다.
-
 

@@ -2,11 +2,10 @@
 layout: post
 read_time: true
 show_date: true
-title: "Firewalld"
-date: 2025-11-19 
-description: AWS Security Group + ufw로 이해하는 방화벽 흐름 정리
-img:
-tags: [devops, django, systemd, monitoring, ubuntu]
+title: "AWS Security Group과 UFW로 이해하는 방화벽"
+date: 2025-11-21
+description: AWS Security Group과 UFW를 기준으로 EC2 앞단의 방화벽 흐름을 정리한 글.
+tags: [devops, networking, firewall, aws, ubuntu]
 author: Juwon
 ---
 
@@ -77,7 +76,7 @@ author: Juwon
 
 ```bash
 sudo ss -tulnp
-````
+```
 
 예시 출력:
 
@@ -303,11 +302,7 @@ curl -I http://서버공인IP:8000
 
 ## 마무리
 
-오늘 정리한 포인트를 한 줄로 요약하면:
-
-> **Security Group은 “클라우드 레벨 문지기”, aws 등에서 제공하는 가상 방화벽
-> ufw는 “서버 OS 레벨 문지기”, os에서 제공하는 방화벽 
-> dig/ss/curl은 “이 문들이 어떻게 열리고 막혀 있는지 관찰하는 도구들”이다.**
-> 사용자 → cloudflare 엣지 서버→ aws 보안그룹 → EC2 → Django 대략 이런 희름 
-
+핵심은 Security Group과 UFW가 같은 방화벽이 아니라 **서로 다른 층에서 동작하는 필터**라는 점이다.
+Security Group은 클라우드 앞단에서, UFW는 서버 OS 안에서 트래픽을 다시 거른다.
+`dig`, `ss`, `curl`을 같이 보면 "DNS가 맞는지", "포트가 실제로 열렸는지", "HTTP 응답이 정상인지"를 층별로 분리해서 확인할 수 있다.
 

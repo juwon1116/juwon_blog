@@ -2,18 +2,17 @@
 layout: post
 read_time: true
 show_date: true
-title: "Performance Monitoring"
-date: 2025-11-19 
-description: Django 서비스 운영하면서 처음 해본 Performance Monitoring 정리
-img:
-tags: [devops, django, systemd, monitoring, ubuntu]
+title: "Django 성능 모니터링 첫 기록"
+date: 2025-11-19
+description: Django 서비스를 운영하며 처음 정리한 성능 모니터링 기준과 체크 루틴.
+tags: [devops, monitoring, performance, django, ubuntu]
 author: Juwon
 ---
 
 ## 핵심요약
 
-> **“서비스가 살아만 있는지”가 아니라
-> **얼마나 빠르고 안정적으로 잘 돌아가는지** 숫자로 계속 확인하는 것**
+> 성능 모니터링은 "서비스가 살아 있는가"를 넘어서,
+> **얼마나 빠르고 안정적으로 동작하는가를 숫자로 계속 확인하는 작업**이다.
 
 그래서 오늘은 특히 **세 가지 지표**에 집중했다.
 
@@ -63,6 +62,12 @@ CPU가 서버 관점이라면,
 
   * 메인 페이지 로딩 시간: **약 240ms**
   * 유저 입장에서는 **딱히 느리다고 느끼기 어려운 속도**
+
+CLI로도 빠르게 확인하고 싶다면 아래처럼 `curl`로 총 응답 시간을 볼 수 있다.
+
+```bash
+curl -o /dev/null -s -w 'time_total=%{time_total}\n' https://quizai.juwonpark.me
+```
 
 내가 머릿속에 잡은 감각:
 
@@ -121,9 +126,9 @@ CPU가 서버 관점이라면,
 아직 전문 모니터링 툴(Prometheus, Grafana, APM 등)을 쓰는 단계는 아니지만,
 그래도 “감으로 느끼는 게 아니라 **숫자와 지표로 보는 습관**”을 만드는 첫 걸음은 밟았다고 생각한다.
 
-## 결론 
-ProcessMonitoring과 Performance Monitoring모니터링은 다르다 
-* **Performance Monitoring**: 프로세스의 퍼포먼스를 모니터링 서버의 점의률(cpu, mem), 응답 시간 등을 확인함 
-일정 부분을 넘어가면 관리자한테 알람을 보냄 
+## 결론
 
-* **ProcessMonitoring**:프로세스가 잘 작동하고 있는지 모니터링, 비정상적으로 종료되었는지 등을 확인 
+Process monitoring과 performance monitoring은 보는 질문이 다르다.
+Performance monitoring은 CPU, 메모리, 응답 시간, 에러율처럼 "얼마나 잘 동작하는가"를 본다.
+반면 process monitoring은 "프로세스가 살아 있는가, 비정상 종료됐는가"를 보는 데 더 가깝다.
+운영에서는 둘 중 하나만으로는 부족하고, 결국 둘을 같이 봐야 장애를 빨리 이해할 수 있다.

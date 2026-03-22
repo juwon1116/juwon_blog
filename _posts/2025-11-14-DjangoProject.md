@@ -3,10 +3,10 @@ layout: post
 read_time: true
 show_date: true
 title: "Django 기반 AI 퀴즈 생성 플랫폼 프로젝트 구조 분석"
-date: 2025-11-11 23:59:00 +0900
-description: Django 5.1.6 기반의 AI 퀴즈 생성 플랫폼(Quizly) 프로젝트의 디렉터리 구조와 각 파일/폴더의 역할을 상세히 분석한 글입니다.
+date: 2025-11-14 23:59:00 +0900
+description: Django 5.1.6 기반 AI 퀴즈 생성 플랫폼 Quizly의 프로젝트 구조와 각 모듈 역할을 정리한 글입니다.
 img: posts/20251114/Django.png
-tags: [Django, Python, 프로젝트구조, AI, 웹개발]
+tags: [django, python, architecture, ai, web]
 author: Juwon
 github: JuWunpark/juwon_blog
 ---
@@ -346,4 +346,5 @@ python manage.py runserver
 - **보안 고려**: 환경 변수를 통한 민감 정보 관리, django-allauth를 통한 안전한 인증
 - **사용자 경험**: 소셜 로그인 지원, 다양한 파일 형식 지원, 커뮤니티 기능
 
-이 구조는 Django의 Best Practice를 따르며, 향후 기능 확장이나 유지보수에 유리한 구조로 설계되었습니다.
+이 구조는 Django의 기본 원칙을 잘 따르고 있으며, 앱 단위 책임 분리도 비교적 명확하다.
+다만 업로드 처리, AI 호출, 파싱 로직처럼 결합도가 높은 부분은 서비스 레이어로 한 번 더 정리하면 테스트와 유지보수가 더 쉬워질 수 있다.

@@ -2,11 +2,10 @@
 layout: post
 read_time: true
 show_date: true
-title: " Monitoring Lab (Prometheus + Grafana + Alertmanager)"
+title: "Monitoring Lab: Prometheus + Grafana + Alertmanager"
 date: 2026-01-16 23:59:00 +0900
 description: 로컬(macOS)에서 Prometheus 수집 → Grafana 대시보드 → Alertmanager(Gmail) 알림까지 end-to-end 모니터링 파이프라인을 구성한 과정과 장애 해결 로그.
-img: 
-tags: [devops, grafana, prometheus, Alertmanager]
+tags: [devops, prometheus, grafana, alertmanager, monitoring]
 author: Juwon
 github: JuWunpark/juwon_blog
 ---
@@ -36,7 +35,7 @@ github: JuWunpark/juwon_blog
 ```bash
 docker compose up -d
 docker ps
-````
+```
 
 ### 2) 접속 주소
 
@@ -116,3 +115,10 @@ docker ps
 * Grafana Alerting과 Prometheus Alerting 비교 정리
 * Discord/Slack 알림 채널 추가
 
+---
+
+## 정리
+
+이번 실습으로 메트릭 수집, 시각화, 알림 전송까지 한 번에 이어지는 흐름을 확인했다.
+특히 Alertmanager가 실제 Gmail 발송까지 이어지는지 검증해 둔 점이 중요했고, Docker Desktop/credential helper 같은 로컬 환경 이슈도 같이 정리했다.
+다음 단계에서는 호스트 메트릭 범위를 더 넓히고, 알림 채널을 다변화하면 작은 개인 관제 스택으로는 꽤 쓸 만한 상태가 된다.

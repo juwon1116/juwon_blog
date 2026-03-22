@@ -2,11 +2,10 @@
 layout: post
 read_time: true
 show_date: true
-title: "ProcessMonitoring"
-date: 2025-11-17 
-description: Ubuntu에서 Django 서비스 process monitoring 설정하기 (systemd + cron)
-img:
-tags: [devops, django, systemd, monitoring, ubuntu]
+title: "Django Process Monitoring 설정기"
+date: 2025-11-17
+description: Ubuntu에서 Django 서비스를 systemd와 cron으로 감시한 process monitoring 실습 기록.
+tags: [devops, django, systemd, monitoring, cron]
 author: Juwon
 ---
 
@@ -26,6 +25,10 @@ author: Juwon
 3. 그 스크립트를 **cron**에 올려서 주기적으로 실행
 
 아래는 실제 서버 환경과 함께 정리한 기록이다.
+
+> 참고:
+> 이 글은 **모니터링 실습 기록**이다.
+> 운영 환경에서는 `runserver` 대신 **gunicorn/uvicorn + reverse proxy** 구성을 쓰는 편이 맞다.
 
 ---
 
@@ -68,7 +71,7 @@ RestartSec=5
 [Install]
 WantedBy=multi-user.target
 EOF
-````
+```
 
 핵심 포인트:
 
@@ -298,6 +301,7 @@ sudo systemctl start quizai.service
 
 같은 것들을 얹으면 보다 “운영다운” 모니터링 시스템으로 확장할 수 있다.
 
-## 결론 
-다음에 할 작업으로는 Performance Monitoring과 Networking Tools, Text Manipulations 을 좀 공부해봐야 할 것 같다. 
+## 결론
 
+이번 글에서 정리한 건 "프로세스가 죽었는지 감지하고 기록하는 최소한의 운영 루틴"이다.
+다음 단계에서는 `runserver`를 운영용 WSGI/ASGI 서버로 교체하고, 헬스체크 엔드포인트나 알림 채널까지 붙이면 훨씬 실전적인 모니터링 구조가 된다.

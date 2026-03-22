@@ -2,10 +2,10 @@
 layout: post
 read_time: true
 show_date: true
-title: "Elastic Stack"
-date: 2025-11-24
-description: Elastic Stack으로 Nginx 로그 모니터링 구축기 
-tags: [devops, docker, django, filebeat, kibana, Elasticsearch, aws]
+title: "Elastic Stack으로 Nginx 로그 관제 구축하기"
+date: 2025-11-29
+description: Filebeat, Elasticsearch, Kibana로 Nginx 로그 관제 대시보드를 만든 기록.
+tags: [devops, elasticsearch, kibana, filebeat, nginx]
 author: Juwon
 ---
 
@@ -70,7 +70,7 @@ services:
       - "5601:5601"
     depends_on:
       - elasticsearch
-````
+```
 
 실행:
 
@@ -412,6 +412,7 @@ and http.response.status_code >= 400
 * Error rate(%) Metric 추가
 * 특정 URL 기준으로 에러 Top N 테이블 만들기
 * 알람(Watch/Alerting)으로 에러율이 급상승할 때 Slack/메일 알림
+* Elasticsearch/Kibana 리소스 사용량 점검 후 운영 스펙 정리
 
 지금 단계까지만 봐도,
 

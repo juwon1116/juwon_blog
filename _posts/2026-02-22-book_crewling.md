@@ -2,16 +2,19 @@
 layout: post
 read_time: true
 show_date: true
-title: "Book Crewling Project "
+title: "Selenium 기반 도서 PDF 크롤러 프로토타입 점검"
 date: 2026-02-22
-description: 책 제목과 저자를 바탕으로 검색엔진 결과를 수집하고 각 결과 페이지에서 PDF 후보와 라이선스 신호를 탐지한 뒤 PDF로 저장하려는 Selenium 기반 CLI 크롤러를 만들고 있다.
-tags: [devops, django, systemd, monitoring, ubuntu]
+description: 책 제목과 저자를 바탕으로 검색 결과를 수집하고 PDF 후보와 라이선스 신호를 판별하는 Selenium 기반 CLI 크롤러 점검 기록.
+tags: [python, selenium, cli, crawling, automation]
 author: Juwon
 ---
 
 ## 이번 세션에서 진행한 작업
 
 이번 세션에서는 전체 실행 흐름을 파악하고, 실제로 검색부터 결과 저장까지 이어지는 최소 동작을 확인했다.
+
+이 프로젝트는 **합법적으로 공개된 자료 또는 퍼블릭 도메인 자료를 찾는 용도**로만 다뤄야 한다.
+검색 결과가 나온다고 해서 바로 다운로드 대상이 되는 것은 아니고, 라이선스 확인이 핵심 조건이다.
 
 ### 완료한 작업
 - 실행 구조 파악
@@ -275,7 +278,7 @@ Bing 검색 결과 첫 페이지에 책과 무관한 결과가 포함되는 경�
 * 설치 방법
 * 실행 예시
 * 결과 JSON 예시
-* known limitations
+* `known limitations`
 
 ---
 
@@ -300,3 +303,4 @@ Bing 검색 결과 첫 페이지에 책과 무관한 결과가 포함되는 경�
 * 검색 결과의 관련성
 * 메타데이터 추출 정확도
 * 라이선스 판단 신뢰도
+* 합법적 공개 자료만 대상으로 제한하는 정책 명확화

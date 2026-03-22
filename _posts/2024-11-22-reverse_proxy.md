@@ -2,10 +2,10 @@
 layout: post
 read_time: true
 show_date: true
-title: "Proxy"
-date: 2025-11-22
-description: Reverse Proxy 개념 간단 정리 (Nginx + Django 기준)
-tags: [devops, django, systemd, monitoring, ubuntu]
+title: "Reverse Proxy와 Nginx 기본 구조"
+date: 2024-11-22
+description: Nginx + Django 기준으로 Reverse Proxy 개념과 배포 구조를 정리한 글.
+tags: [devops, nginx, django, reverse-proxy, ubuntu]
 author: Juwon
 ---
 
@@ -25,7 +25,7 @@ author: Juwon
 Nginx (Reverse Proxy)
     ↓
 Gunicorn / Django (백엔드 서버)
-````
+```
 
 * 브라우저 입장에서는 **Nginx만 보임**
 * 뒤에 어떤 서버가 몇 개 있는지, 포트가 뭔지는 모름
@@ -149,5 +149,7 @@ Django 설정의 `SECURE_PROXY_SSL_HEADER`, `USE_X_FORWARDED_HOST` 같은 옵션
 * 주소/포트는 보통 `gunicorn: 127.0.0.1:8000`, Nginx가 여기를 `proxy_pass`로 물어준다.
 
 ## 결론
-* reverse proxy는 서버로 들어오기 전 한번 걸러주는 곳이다 nginx가 그 역할을 한다 
 
+Reverse Proxy는 앱 서버 앞단에서 요청을 받아 정리해 주는 "입구 서버"다.
+Nginx가 HTTPS 종료, 정적 파일 처리, 앱 서버 은닉을 맡으면 Django/Gunicorn은 애플리케이션 실행에 집중할 수 있다.
+실무에서는 `proxy_pass` 자체보다 `Host`, `X-Forwarded-For`, `X-Forwarded-Proto` 같은 헤더를 어떻게 넘길지도 함께 챙겨야 한다.

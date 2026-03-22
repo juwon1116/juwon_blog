@@ -2,10 +2,10 @@
 layout: post
 read_time: true
 show_date: true
-title: "Roadbalancer"
+title: "Nginx 로드 밸런서로 Django 분산 처리하기"
 date: 2025-11-22
-description:  Quiz_AI 서버에 Nginx 로드 밸런서 적용
-tags: [devops, django, ubuntu]
+description: Quiz_AI 서버에서 Nginx `upstream`과 Gunicorn 다중 인스턴스로 로드 밸런싱을 적용한 기록.
+tags: [devops, nginx, django, load-balancing, ubuntu]
 author: Juwon
 ---
 ## 1. 목표: Django 서버를 두 개로 나눠 받고 Nginx로 분산하기
@@ -66,7 +66,7 @@ server {
         proxy_send_timeout 300s;
     }
 }
-````
+```
 
 즉, **한 포트(8000)에만 프록시**하고 있었음.
 
@@ -250,7 +250,35 @@ sudo systemctl status quizai-2.service
 sudo ss -lntp | grep 800
 ```
 
+---
 
+## 5. 적용 후 검증 포인트
+
+설정만 넣고 끝내지 말고, 아래 순서로 확인하면 좋다.
+
+```bash
+sudo nginx -t
+curl -I http://127.0.0.1
+for i in {1..5}; do curl -s http://127.0.0.1 >/dev/null; done
+sudo tail -f /var/log/nginx/access.log
+```
+
+특히 `journalctl -u quizai.service -u quizai-2.service -f`를 같이 열어두면,
+요청이 두 Gunicorn 인스턴스로 분산되는지 감을 잡기 쉽다.
+
+---
+
+## 6. 운영할 때 주의할 점
+
+로드 밸런싱 자체는 간단하지만, 애플리케이션이 상태를 어디에 저장하는지는 별개 문제다.
+
+* 세션/캐시를 프로세스 메모리에만 두면 인스턴스가 둘일 때 동작이 꼬일 수 있다.
+* 업로드 파일을 로컬 디스크에만 두면 어느 인스턴스로 붙느냐에 따라 파일이 안 보일 수 있다.
+* 헬스체크 없이 프로세스만 늘리면 죽은 백엔드로도 트래픽을 보내는 상황이 생길 수 있다.
+
+그래서 실무에서는 Redis 같은 공용 저장소, 정적/미디어 분리, 헬스체크까지 같이 보는 편이 맞다.
+
+---
 
 ## 7. 오늘 작업 요약
 

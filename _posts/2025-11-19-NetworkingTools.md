@@ -2,16 +2,16 @@
 layout: post
 read_time: true
 show_date: true
-title: "Networking Tools"
-date: 2025-11-19 
-description: Networking Tools로 서비스 상태 빠르게 체크하기 (실습 기록)
-tags: [devops, django, systemd, monitoring, ubuntu]
+title: "네트워크 점검 도구 실습 기록"
+date: 2025-11-19
+description: ping, traceroute, curl, dig, ss로 서비스 상태를 빠르게 좁혀 가는 실습 기록.
+tags: [devops, networking, dns, troubleshooting, ubuntu]
 author: Juwon
 ---
 
 
 
-## Networking Tools(실습 기록)
+## 네트워크 점검 도구 실습 기록
 
 Ubuntu 서버에서 `quizai.juwonpark.me`를 운영하면서, 기본적인 **네트워크 진단 도구**들을 직접 찍어보며 정리한 내용이다. “사이트가 안 열릴 때 어디부터 봐야 하는지”를 감 잡는 게 목표였다.
 
@@ -27,6 +27,8 @@ ping -c 4 google.com
 * `avg ≈ 28ms`
 
 → **패킷 손실 0%, 평균 지연 28ms**로, 서버에서 인터넷(구글)까지 기본 연결은 정상.
+
+단, 실무에서는 ICMP를 막아둔 서버도 많아서 `ping` 실패만으로 서비스 장애라고 단정하면 안 된다.
 
 ---
 
@@ -165,5 +167,8 @@ tcp LISTEN 0 80      127.0.0.1:3306   0.0.0.0:* users:(("mariadbd",pid=...,fd=22
 를 훨씬 빨리 좁혀갈 수 있겠단 생각이 든다.
 
 ---
-## 결론 
-* 뭐 기억이 그때그때 날진 모르겠지만 종종 개발한거 서버에 올리고 배포할때마다 사용할 것 같다.
+## 결론
+
+이 글에서 정리한 도구들은 각각 역할이 다르다.
+`ping`은 네트워크 감, `dig`는 DNS, `curl -I`는 HTTP 응답, `ss`는 서버 포트 상태를 보여준다.
+장애가 났을 때 이 순서대로 좁혀 가면 감으로 찍는 것보다 훨씬 빠르게 원인을 분리할 수 있다.
