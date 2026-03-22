@@ -1,48 +1,22 @@
-# GitHub Secrets 설정 가이드
+# GitHub Secrets
 
-## Repository secrets에 추가하기
+현재 기본 배포 경로는 GitHub Pages라서 **필수 Repository secret 없음**.
 
-GitHub 저장소 → **Settings** → **Secrets and variables** → **Actions** → **Repository secrets** → **New repository secret**
+## 기본 배포
 
-다음 3개의 Secret을 추가하세요:
+- 대상: `https://juwonpark.me`
+- 워크플로: `.github/workflows/jekyll-gh-pages.yml`
+- 필요 secret: 없음
 
-### 1. SERVER_HOST
-- **Name**: `SERVER_HOST`
-- **Value**: 서버의 공인 IP 주소
-  - AWS EC2를 사용하는 경우: EC2 인스턴스의 Public IPv4 주소
-  - 또는 도메인: `blog.juwonpark.me` (도메인이 서버를 가리키는 경우)
+## Legacy Server Deploy
 
-### 2. SERVER_USER
-- **Name**: `SERVER_USER`
-- **Value**: `ubuntu`
+`.github/workflows/deploy.yml` 은 자동 실행 안 하고 `workflow_dispatch` 수동 실행만 남겨둠.
 
-### 3. SERVER_SSH_KEY
-- **Name**: `SERVER_SSH_KEY`
-- **Value**: 서버의 SSH 개인 키 전체 내용
-  - 아래 명령어로 확인:
-  ```bash
-  cat ~/.ssh/id_ed25519
-  ```
-  - 또는:
-  ```bash
-  cat ~/.ssh/id_rsa
-  ```
-  - **전체 내용**을 복사 (-----BEGIN부터 END까지 모두)
+이 legacy workflow를 다시 쓸 때만 아래 secret 필요:
 
-## 중요 사항
+- `SERVER_HOST`
+- `SERVER_USER`
+- `SERVER_PORT`
+- `SERVER_SSH_KEY`
 
-⚠️ **SSH 개인 키는 절대 공개하지 마세요!**
-- GitHub Secrets에만 안전하게 저장됩니다
-- 다른 사람과 공유하지 마세요
-
-## 서버 IP 확인 방법
-
-AWS EC2를 사용하는 경우:
-1. EC2 콘솔 → Instances
-2. 인스턴스 선택 → Details 탭
-3. Public IPv4 address 확인
-
-또는 서버에서:
-```bash
-curl -s ifconfig.me
-```
+지금 기준 운영 기본값은 아님.
