@@ -337,11 +337,6 @@ html[data-theme="light"] .theme-toggle-icon-moon {
   font-weight: 700;
 }
 
-.hero-rss-link {
-  color: var(--accent);
-  font-size: 1.2rem;
-}
-
 .hero-panel-copy {
   max-width: 34rem;
   color: var(--text-soft);
