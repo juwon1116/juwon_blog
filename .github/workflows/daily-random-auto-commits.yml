@@ -1,0 +1,41 @@
+name: Daily Random Auto Commits
+
+on:
+  schedule:
+    - cron: "30 14 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-random-auto-commits
+  cancel-in-progress: false
+
+jobs:
+  auto-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Configure git
+        run: |
+          git config user.name "Juwon Park"
+          git config user.email "hello@juwonpark.me"
+
+      - name: Create random empty commits
+        env:
+          TZ_NAME: Asia/Seoul
+          MIN_COMMITS: 1
+          MAX_COMMITS: 20
+        run: |
+          chmod +x scripts/random-auto-commit.sh
+          ./scripts/random-auto-commit.sh
+
+      - name: Push commits
+        run: git push origin HEAD:main

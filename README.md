@@ -159,3 +159,31 @@ curl -I https://blog.juwonpark.me | sed -n '1p;/last-modified/Ip'
 * UFW: `22,80,443`만 공개, `8000/3306/4000/25` 차단
 * 워크플로: `StrictHostKeyChecking=yes` + `ssh-keyscan`
 * 배포 경로는 `ubuntu` 소유로 유지
+
+---
+
+## 랜덤 자동 커밋
+
+블로그 글/페이지 파일은 건드리지 않고, empty commit만 생성:
+
+```bash
+./scripts/random-auto-commit.sh
+```
+
+기본 동작:
+
+* `Asia/Seoul` 기준 당일 안에서 랜덤 시각 생성
+* `1..20`개 empty commit 생성
+* 커밋 메시지에 `[auto-commit]` 마커 포함
+* `Deploy to Server` / `Deploy Jekyll site to Pages`는 해당 마커 푸시를 skip
+
+수동 dry-run:
+
+```bash
+DRY_RUN=1 MIN_COMMITS=2 MAX_COMMITS=4 ./scripts/random-auto-commit.sh
+```
+
+스케줄:
+
+* `.github/workflows/daily-random-auto-commits.yml`
+* 매일 `23:30` KST (`14:30` UTC) 1회 실행
