@@ -198,7 +198,6 @@ td {
 .article-meta,
 .pagination a,
 .site-footer-note,
-.site-footer-links a,
 .section-heading-row > a {
   font-family: var(--font-mono);
 }
