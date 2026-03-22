@@ -820,12 +820,6 @@ html[data-theme="light"] .theme-toggle-icon-moon {
   padding-top: 1rem;
 }
 
-.site-footer-links {
-  display: flex;
-  gap: 1rem;
-}
-
-.site-footer-links a,
 .site-footer-note {
   color: var(--text-faint);
   font-size: 0.8rem;

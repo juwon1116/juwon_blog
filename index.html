@@ -10,10 +10,12 @@ layout: home-page
   </a>
   <div class="hero-panel-body">
     <div class="hero-title-row">
-      <h1>개발과 작업을 기록하는 블로그입니다</h1>
+      <h1>주원 박의 개발 블로그</h1>
     </div>
     <p class="hero-panel-copy hero-panel-copy-primary">{{ site.description }}</p>
-    <p class="hero-panel-copy">{{ site.about-author }}</p>
+    {% if site.about-author and site.about-author != "" %}
+      <p class="hero-panel-copy">{{ site.about-author }}</p>
+    {% endif %}
     {% include social-links.html compact=true icons_only=true %}
   </div>
 </section>

@@ -3,15 +3,8 @@
 
 <footer class="site-footer">
   <div class="shell shell-wide">
-    {% unless page.layout == "post" %}
-      <div class="site-divider"></div>
-    {% endunless %}
     <div class="site-footer-inner">
       {% include social-links.html compact=true icons_only=true %}
-      <div class="site-footer-links">
-        <a href="{{ relativebase }}archive.html">Posts</a>
-        <a href="{{ relativebase }}tags.html">Tags</a>
-      </div>
       <p class="site-footer-note">{{ site.time | date: '%Y' }} &copy; {{ site.author }}</p>
     </div>
   </div>
