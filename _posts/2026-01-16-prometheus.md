@@ -69,7 +69,7 @@ docker ps
 * Google 계정에서 **2단계 인증 활성화**
 * **앱 비밀번호(App Password)** 생성 (예: 이름 `alertmanager`)
 
-> ⚠️ 보안: 앱 비밀번호는 절대 GitHub에 커밋하지 말 것.
+> 보안: 앱 비밀번호는 절대 GitHub에 커밋하지 말 것.
 
 ### 2) Alertmanager 설정(`alertmanager.yml`)
 

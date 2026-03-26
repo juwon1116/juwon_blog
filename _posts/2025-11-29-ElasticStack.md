@@ -298,8 +298,8 @@ sudo systemctl status filebeat
 
 ### 10.1 Requests over time 복제
 
-1. `[Nginx] Requests over time` 패널에서 ⚙️ → **Duplicate panel**
-2. 복제된 패널 ⚙️ → **Edit**
+1. `[Nginx] Requests over time` 패널에서 → **Duplicate panel**
+2. 복제된 패널 → **Edit**
 
 #### 블로그 전용 그래프
 

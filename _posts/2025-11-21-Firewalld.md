@@ -24,7 +24,7 @@ author: Juwon
 
 ## 1. Security Group vs ufw 한 줄 정리
 
-### 🔒 Security Group (AWS 가상 방화벽)
+### Security Group (AWS 가상 방화벽)
 
 - AWS에서 제공하는 **가상 방화벽**
 - EC2 인스턴스 “앞단”에서 동작
@@ -37,7 +37,7 @@ author: Juwon
 
 ---
 
-### 🔐 ufw (Ubuntu 호스트 방화벽)
+### ufw (Ubuntu 호스트 방화벽)
 
 - Ubuntu OS에서 제공하는 **호스트 방화벽**
 - EC2 안에서 동작 (리눅스 iptables를 쉽게 쓰게 해주는 래퍼)
@@ -95,7 +95,7 @@ tcp   LISTEN 0 80   127.0.0.1:3306   0.0.0.0:*  users:(("mariadbd",pid=476432,fd
   * MariaDB는 **로컬호스트(127.0.0.1)** 에서만 리슨
   * EC2 안에서만 접속 가능, 외부에서는 절대 접근 불가
 
-👉 핵심:
+핵심:
 
 * `0.0.0.0:포트` → “어디서 들어오든 다 받을 준비”
 * `127.0.0.1:포트` → “이 서버 내부에서만 접속 허용”
@@ -305,4 +305,3 @@ curl -I http://서버공인IP:8000
 핵심은 Security Group과 UFW가 같은 방화벽이 아니라 **서로 다른 층에서 동작하는 필터**라는 점이다.
 Security Group은 클라우드 앞단에서, UFW는 서버 OS 안에서 트래픽을 다시 거른다.
 `dig`, `ss`, `curl`을 같이 보면 "DNS가 맞는지", "포트가 실제로 열렸는지", "HTTP 응답이 정상인지"를 층별로 분리해서 확인할 수 있다.
-
