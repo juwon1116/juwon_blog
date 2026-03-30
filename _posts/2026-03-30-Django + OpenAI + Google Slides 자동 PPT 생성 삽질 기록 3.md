@@ -3,7 +3,7 @@ layout: post
 read_time: true
 show_date: true
 title: "Django + OpenAI + Google Slides 자동 PPT 생성 삽질 기록 3: 편집 가능한 웹앱과 Lightsail 배포 경로까지"
-date: 2024-11-22
+date: 2026-03-30
 description: Django 기반 AI PPT 생성기를 편집 가능한 웹앱으로 확장하고 Docker, Caddy, Lightsail, Terraform 배포 경로를 분리하며 정리한 작업 기록.
 tags: [Django, OpenAI, Google Slides, PPTXGenJS, Docker, Caddy, Lightsail, Terraform]
 author: Juwon
