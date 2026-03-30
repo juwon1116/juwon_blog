@@ -491,8 +491,9 @@ html[data-theme="light"] .theme-toggle-icon-moon {
 }
 
 .article-title {
-  max-width: 18ch;
+  max-width: 30ch;
   font-size: clamp(1.65rem, 3.6vw, 2.35rem);
+  text-wrap: balance;
 }
 
 .article-deck {
