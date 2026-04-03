@@ -508,6 +508,10 @@ html[data-theme="light"] .theme-toggle-icon-moon {
   font-weight: 500;
 }
 
+.article-body > h1:first-child {
+  display: none;
+}
+
 .article-body a {
   color: var(--accent);
   text-decoration: underline;
