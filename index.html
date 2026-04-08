@@ -4,27 +4,85 @@ layout: home-page
 {% include calculate_relative_base.html %}
 {% assign posts = paginator.posts | default: site.posts %}
 
-<section class="hero-panel">
-  <a class="hero-panel-avatar" href="{{ relativebase }}about.html">
-    <img src="{{ relativebase }}assets/img/{{ site.author-pic }}" alt="{{ site.author }}">
-  </a>
+<section class="hero-panel hero-panel-editorial">
   <div class="hero-panel-body">
-    <div class="hero-title-row">
-      <h1>박주원의 개발 블로그</h1>
-    </div>
+    <p class="hero-panel-kicker">Juwon Park / Engineering Notes</p>
+    <h1>실무에서 건진 패턴을<br>짧고 단단한 글로 남깁니다.</h1>
     <p class="hero-panel-copy hero-panel-copy-primary">{{ site.description }}</p>
-    {% if site.about-author and site.about-author != "" %}
-      <p class="hero-panel-copy">{{ site.about-author }}</p>
-    {% endif %}
+    <p class="hero-panel-copy">배포 로그, 운영 메모, 자동화 실험, 디버깅 기록을 한국어로 정리합니다.</p>
+    <div class="hero-action-row">
+      <a class="button-primary" href="{{ relativebase }}archive.html">최근 글 보기</a>
+      <a class="button-secondary" href="{{ relativebase }}about.html">소개 보기</a>
+    </div>
+    <div class="hero-metric-row">
+      <div class="hero-metric">
+        <span>글</span>
+        <strong>{{ site.posts | size }}</strong>
+      </div>
+      <div class="hero-metric">
+        <span>태그</span>
+        <strong>{{ site.tags | size }}</strong>
+      </div>
+      <div class="hero-metric">
+        <span>주제</span>
+        <strong>운영 · 자동화</strong>
+      </div>
+    </div>
     {% include social-links.html compact=true icons_only=true %}
+  </div>
+  <div class="hero-panel-aside">
+    <div class="iconic-showcase">
+      <p class="section-kicker">ICONIC 기반 툴셋</p>
+      <div class="iconic-grid">
+        <div class="iconic-chip"><img src="{{ relativebase }}assets/img/iconic/django.svg" alt="Django"><span>Django</span></div>
+        <div class="iconic-chip"><img src="{{ relativebase }}assets/img/iconic/docker.svg" alt="Docker"><span>Docker</span></div>
+        <div class="iconic-chip"><img src="{{ relativebase }}assets/img/iconic/github-actions.svg" alt="GitHub Actions"><span>GitHub Actions</span></div>
+        <div class="iconic-chip"><img src="{{ relativebase }}assets/img/iconic/cloudflare.svg" alt="Cloudflare"><span>Cloudflare</span></div>
+        <div class="iconic-chip"><img src="{{ relativebase }}assets/img/iconic/python.svg" alt="Python"><span>Python</span></div>
+        <div class="iconic-chip"><img src="{{ relativebase }}assets/img/iconic/claude.svg" alt="Claude"><span>Claude</span></div>
+        <div class="iconic-chip"><img src="{{ relativebase }}assets/img/iconic/chatgpt.svg" alt="ChatGPT"><span>ChatGPT</span></div>
+        <div class="iconic-chip"><img src="{{ relativebase }}assets/img/iconic/gemini.svg" alt="Gemini"><span>Gemini</span></div>
+      </div>
+      <p class="iconic-note">버블형 SVG 아이콘은 <a href="https://github.com/YuheshPandian/ICONIC" target="_blank" rel="noopener noreferrer">ICONIC</a> 오픈소스를 사용했습니다.</p>
+    </div>
   </div>
 </section>
 
 <div class="section-rule section-rule-bleed"></div>
 
+<section class="focus-section">
+  <div class="section-heading-row">
+    <div>
+      <p class="section-kicker">무엇을 다루나</p>
+      <h2>실무 감각이 남는 주제만 남깁니다.</h2>
+    </div>
+  </div>
+  <div class="focus-grid">
+    <article class="focus-card">
+      <p class="focus-card-index">01</p>
+      <h3>장고와 서비스 운영</h3>
+      <p>배포, 서버 구성, 장애 대응, 운영성 개선처럼 바로 써먹을 수 있는 내용을 정리합니다.</p>
+    </article>
+    <article class="focus-card">
+      <p class="focus-card-index">02</p>
+      <h3>자동화와 워크플로우</h3>
+      <p>반복 작업을 스크립트와 툴 체인으로 줄이고, 실제 업무 흐름에 붙는 자동화를 다룹니다.</p>
+    </article>
+    <article class="focus-card">
+      <p class="focus-card-index">03</p>
+      <h3>AI 도구 실전 적용</h3>
+      <p>Claude, ChatGPT, Gemini 같은 도구를 개발 루프에 연결할 때 생기는 패턴과 함정을 기록합니다.</p>
+    </article>
+  </div>
+</section>
+
 <section class="post-section">
   <div class="section-heading-row section-heading-row-compact">
-    <a href="{{ relativebase }}archive.html">View all posts</a>
+    <div>
+      <p class="section-kicker">최근 기록</p>
+      <h2>최신 글</h2>
+    </div>
+    <a href="{{ relativebase }}archive.html">전체 글 보기</a>
   </div>
   <ol class="post-feed">
     {% for post in posts %}

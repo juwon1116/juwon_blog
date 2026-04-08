@@ -1,6 +1,6 @@
 # Site settings
 title: Juwon Park
-description: '장고, 데브옵스, 자동화, 데이터 워크플로우를 중심으로 짧고 실용적인 내용을 기록하는 블로그입니다.' # this means to ignore newlines until "baseurl:"
+description: '장고, 데브옵스, 자동화, AI 워크플로우를 실무 맥락에서 짧고 선명하게 정리하는 기록 저장소입니다.' # this means to ignore newlines until "baseurl:"
 permalink: ':title:output_ext'
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://juwonpark.me" # the base hostname & protocol for your site, e.g. http://example.com
@@ -26,7 +26,7 @@ highlight_theme: syntax-base16.monokai.dark # select a dark theme for the code h
 # Author settings
 author: Juwon Park # add your name
 author-pic: juwon-profile-2026.jpg
-about-author: ""
+about-author: "장고, 데브옵스, 자동화, AI 워크플로우를 다루며 실무에서 건진 패턴을 다시 쓰기 쉬운 기록으로 정리합니다."
 
 # Contact links
 email: hello@juwonpark.me

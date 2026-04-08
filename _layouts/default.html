@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   {% include head.html %}
   <body data-page-type="{% if page.url contains 'search' %}search{% elsif page.url contains 'archive' %}archive{% elsif page.url contains 'about' %}about{% elsif page.layout == 'post' %}post{% else %}default{% endif %}">
     {{ content }}

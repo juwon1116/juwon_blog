@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="512"
+   height="512"
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg1"
+   xml:space="preserve"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+     id="defs1"><radialGradient
+       id="prefix__paint0_radial_980_20147"
+       cx="0"
+       cy="0"
+       r="1"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(16.1326,5.4553,-43.70045,129.2322,1.588,6.503)"><stop
+         offset=".067"
+         stop-color="#9168C0"
+         id="stop1" /><stop
+         offset=".343"
+         stop-color="#5684D1"
+         id="stop2" /><stop
+         offset=".672"
+         stop-color="#1BA1E3"
+         id="stop3" /></radialGradient></defs><g
+     id="layer1"><circle
+       style="fill:#2e3548;fill-opacity:1;stroke:#858585;stroke-width:8;stroke-dasharray:none;stroke-opacity:1"
+       id="path1"
+       cx="256.00003"
+       cy="256.00006"
+       r="241.31339" /><g
+       style="fill:none"
+       id="g1"
+       transform="matrix(21,0,0,21,88,88)"><path
+         d="M 16,8.016 A 8.522,8.522 0 0 0 8.016,16 H 7.984 A 8.521,8.521 0 0 0 0,8.016 V 7.984 A 8.521,8.521 0 0 0 7.984,0 H 8.016 A 8.522,8.522 0 0 0 16,7.984 Z"
+         fill="url(#prefix__paint0_radial_980_20147)"
+         id="path1-0"
+         style="fill:url(#prefix__paint0_radial_980_20147)" /></g></g></svg>
