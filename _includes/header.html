@@ -3,20 +3,19 @@
 
 <header class="site-header">
   <div class="shell shell-wide site-header-inner">
-    <a class="site-brand" href="{{ relativebase }}">
-      <span class="site-brand-mark">JP</span>
-      <span class="site-brand-text">{{ site.title }}</span>
-    </a>
+    <a class="site-brand" href="{{ relativebase }}">{{ site.title }}</a>
     <button class="site-menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
-      <span>메뉴</span>
+      <span>Menu</span>
     </button>
     <nav class="site-nav" id="site-menu">
-      <a href="{{ relativebase }}archive.html" class="{% if page.url contains 'archive' or page.url contains 'tag' or page.url contains 'tags' %}active-nav{% endif %}">글</a>
-      <a href="{{ relativebase }}about.html" class="{% if page.url contains 'about' %}active-nav{% endif %}">소개</a>
-      <a class="{% if page.url contains 'search' %}active-nav{% endif %}" href="{{ relativebase }}search.html">검색</a>
+      <a href="{{ relativebase }}archive.html" class="{% if page.url contains 'archive' or page.url contains 'tag' or page.url contains 'tags' %}active-nav{% endif %}">Posts</a>
+      <a href="{{ relativebase }}about.html" class="{% if page.url contains 'about' %}active-nav{% endif %}">About</a>
+      <a class="nav-icon-link {% if page.url contains 'search' %}active-icon{% endif %}" href="{{ relativebase }}search.html" aria-label="Search">
+        <i class="fa fa-search" aria-hidden="true"></i>
+      </a>
       <button class="theme-toggle-button" id="theme-toggle" type="button" aria-label="테마 변경">
-        <span class="theme-toggle-label theme-toggle-label-dark">라이트</span>
-        <span class="theme-toggle-label theme-toggle-label-light">다크</span>
+        <span class="theme-toggle-icon theme-toggle-icon-sun"><i class="fa fa-sun-o" aria-hidden="true"></i></span>
+        <span class="theme-toggle-icon theme-toggle-icon-moon"><i class="fa fa-moon-o" aria-hidden="true"></i></span>
       </button>
     </nav>
   </div>

@@ -1,6 +1,6 @@
 ---
 layout: menu-page
-title: 소개
+title: About
 permalink: about:output_ext
 ---
 {% include calculate_relative_base.html %}
@@ -8,38 +8,21 @@ permalink: about:output_ext
 
 <section class="about-page">
   <header class="about-header">
-    <p class="section-kicker">소개</p>
-    <h1>기록으로 일하는 개발자</h1>
+    <h1>About</h1>
   </header>
 
   <section class="about-hero-grid">
     <figure class="about-media">
-      <img src="{{ relativebase }}assets/img/about/IMG_6903.JPG" alt="{{ site.author }} 프로필 사진">
+      <img src="{{ relativebase }}assets/img/about/IMG_6903.JPG" alt="{{ site.author }} taking a photo on a quiet street">
     </figure>
     <div class="about-copy">
-      <p>장고, 데브옵스, 자동화, AI 워크플로우를 중심으로 일합니다.</p>
-      <p>복잡한 문제를 오래 설명하는 대신, 다음에도 바로 꺼내 쓸 수 있는 기록으로 압축하는 편입니다.</p>
-      <p>이 블로그에는 배포 로그, 운영 메모, 디버깅 과정, 작은 자동화 실험을 남깁니다.</p>
+      <p>장고, 데브옵스, 자동화, 그리고 실용적인 AI 워크플로우를 중심으로 작업하고 있습니다.</p>
+      <p>복잡한 실무 문제를 짧고 명확하며 다시 활용할 수 있는 기록으로 정리하는 걸 좋아합니다.</p>
+      <p>이 블로그에는 배포 로그, 운영 노트, 디버깅 기록, 아키텍처 스냅샷을 정리합니다.</p>
+      <p>Deep in builder mode, working across Django, DevOps, automation, and practical AI workflows.</p>
+      <p>I like turning messy real-world problems into notes that are short, clear, and reusable.</p>
+      <p>This blog is where I keep deployment logs, operating notes, debugging write-ups, and architecture snapshots.</p>
       {% include social-links.html compact=true icons_only=true %}
-    </div>
-  </section>
-
-  <section class="about-stack-panel">
-    <div class="section-heading-row section-heading-row-compact">
-      <div>
-        <p class="section-kicker">주요 도구</p>
-        <h2>자주 꺼내는 기술 묶음</h2>
-      </div>
-    </div>
-    <div class="iconic-grid">
-      <div class="iconic-chip"><img src="{{ relativebase }}assets/img/iconic/django.svg" alt="Django"><span>Django</span></div>
-      <div class="iconic-chip"><img src="{{ relativebase }}assets/img/iconic/docker.svg" alt="Docker"><span>Docker</span></div>
-      <div class="iconic-chip"><img src="{{ relativebase }}assets/img/iconic/github-actions.svg" alt="GitHub Actions"><span>GitHub Actions</span></div>
-      <div class="iconic-chip"><img src="{{ relativebase }}assets/img/iconic/cloudflare.svg" alt="Cloudflare"><span>Cloudflare</span></div>
-      <div class="iconic-chip"><img src="{{ relativebase }}assets/img/iconic/python.svg" alt="Python"><span>Python</span></div>
-      <div class="iconic-chip"><img src="{{ relativebase }}assets/img/iconic/claude.svg" alt="Claude"><span>Claude</span></div>
-      <div class="iconic-chip"><img src="{{ relativebase }}assets/img/iconic/chatgpt.svg" alt="ChatGPT"><span>ChatGPT</span></div>
-      <div class="iconic-chip"><img src="{{ relativebase }}assets/img/iconic/gemini.svg" alt="Gemini"><span>Gemini</span></div>
     </div>
   </section>
 </section>

@@ -1,25 +1,24 @@
 ---
 layout: menu-page
-title: 검색
+title: Search
 permalink: search:output_ext
 ---
 {% include calculate_relative_base.html %}
 
 <section class="search-page">
   <header class="search-header">
-    <p class="section-kicker">검색</p>
-    <h1>원하는 기록 찾기</h1>
-    <p class="search-intro">주제, 도구, 에러 키워드로 글을 바로 찾을 수 있습니다.</p>
+    <h1>Search</h1>
+    <p class="search-intro">Search any article ...</p>
   </header>
 
   <form class="search-form search-form-prominent" role="search" onsubmit="return false;">
     <div id="search-container" class="search-input-wrap">
-      <span class="search-input-icon">찾기</span>
+      <span class="search-input-icon"><i class="fa fa-search" aria-hidden="true"></i></span>
       <input
         type="text"
         id="search-input"
         class="search"
-        placeholder="예: Docker 모니터링, 배포, Django"
+        placeholder="Search posts, e.g. 'Docker monitoring'"
         autocomplete="off"
         spellcheck="false"
       >

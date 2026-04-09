@@ -1,15 +1,14 @@
 ---
 layout: menu-page
-title: 전체 글
+title: Archive
 permalink: archive:output_ext
 ---
 {% include calculate_relative_base.html %}
 
 <section class="listing-page">
   <header class="archive-header">
-    <p class="section-kicker">아카이브</p>
-    <h1>전체 글</h1>
-    <p class="archive-intro">연도와 월 기준으로 모든 글을 둘러볼 수 있습니다.</p>
+    <h1>All Posts</h1>
+    <p class="archive-intro">Browse all blog posts by year and month</p>
   </header>
 
   {% assign year_groups = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
@@ -21,7 +20,7 @@ permalink: archive:output_ext
       </div>
       <div class="section-rule"></div>
 
-      {% assign month_groups = year_group.items | group_by_exp: "post", "post.date | date: '%-m월'" %}
+      {% assign month_groups = year_group.items | group_by_exp: "post", "post.date | date: '%B'" %}
       {% for month_group in month_groups %}
         <section class="archive-month-group">
           <div class="archive-month-heading">

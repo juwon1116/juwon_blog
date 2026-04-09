@@ -25,22 +25,26 @@
 <div class="social-links {% if include.compact %}social-links-compact{% endif %}">
   {% if github_url %}
     <a href="{{ github_url }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-      <span>GitHub</span>
+      <i class="fa fa-github" aria-hidden="true"></i>
+      {% unless include.icons_only %}<span>GitHub</span>{% endunless %}
     </a>
   {% endif %}
   {% if linkedin_url %}
     <a href="{{ linkedin_url }}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-      <span>LinkedIn</span>
+      <i class="fa fa-linkedin" aria-hidden="true"></i>
+      {% unless include.icons_only %}<span>LinkedIn</span>{% endunless %}
     </a>
   {% endif %}
   {% if twitter_url %}
     <a href="{{ twitter_url }}" target="_blank" rel="noopener noreferrer" aria-label="X">
-      <span>X</span>
+      <i class="fa fa-twitter" aria-hidden="true"></i>
+      {% unless include.icons_only %}<span>X</span>{% endunless %}
     </a>
   {% endif %}
   {% if site.email %}
     <a href="mailto:{{ site.email }}" aria-label="Email">
-      <span>이메일</span>
+      <i class="fa fa-envelope-o" aria-hidden="true"></i>
+      {% unless include.icons_only %}<span>이메일</span>{% endunless %}
     </a>
   {% endif %}
 </div>

@@ -1,6 +1,6 @@
 ---
 layout: menu-page
-title: 소개
+title: About me
 permalink: /about/
 ---
 
