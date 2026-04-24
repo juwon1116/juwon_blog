@@ -1,11 +1,20 @@
 {% include calculate_relative_base.html %}
 {% include escape-404.html %}
+{% assign is_english = false %}
+{% if page.lang == 'en' or page.collection == 'en_posts' or page.url contains '/en/' %}
+  {% assign is_english = true %}
+{% endif %}
+{% if is_english %}
+  {% assign default_description = site.description_en %}
+{% else %}
+  {% assign default_description = site.description %}
+{% endif %}
 
 <head>
   <meta charset="utf-8">
   <title>{% if page.title %}{{page.title}} - {{site.title}}{% else %}{{site.title}}{% endif %}</title>
   <link rel="canonical" href="{{ site.url }}{{ page.url }}">
-  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ default_description }}{% endif %}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {% include SEO.html %}
   <meta name="theme-color" content="#1e2436">

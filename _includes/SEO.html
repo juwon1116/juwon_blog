@@ -1,4 +1,12 @@
 {% assign words = page.content | strip_html | number_of_words %}
+{% assign seo_description = page.description %}
+{% if seo_description == nil or seo_description == "" %}
+  {% if page.lang == 'en' or page.collection == 'en_posts' or page.url contains '/en/' %}
+    {% assign seo_description = site.description_en %}
+  {% else %}
+    {% assign seo_description = site.description %}
+  {% endif %}
+{% endif %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -7,7 +15,7 @@
     "@type": "WebPage",
     "@id": "{{ site.url }}"},
   "headline": "{% if page.title %}{{page.title}}{% else %}{{site.title}}{% endif %}",
-  "abstract": "{{ page.description }}",
+  "abstract": "{{ seo_description }}",
     "keywords": "{% for tag in page.tags %}{{tag}}{% if forloop.last == false %}, {% endif %}{% endfor %}",
     "wordcount": "{{ words }}",
     "image": ["{{ site.url }}/assets/img{{ page.img }}"],
@@ -30,7 +38,7 @@
 <meta property="og:url" content="{{ site.url }}{{ page.url }}"/>
 <meta property="og:type" content="article"/>
 <meta property="og:title" content="{% if page.title %}{{page.title}}{% else %}{{site.title}}{% endif %}"/>
-<meta property="og:description" content="{{ page.description }}"/>
+<meta property="og:description" content="{{ seo_description }}"/>
 <meta property="og:image" content="{{ site.url }}/assets/img{{ page.img }}"/>
 <meta property="og:image:alt" content="{{page.title}}"/>
 <meta property="og:site_name" content="{{site.title}}" />
@@ -40,13 +48,13 @@
 <meta property="fb:admins" content="{{ site.fbadmin }}" />
 <!-- Schema.org markup for Google -->
 <meta itemprop="name" content="{% if page.title %}{{page.title}}{% else %}{{site.title}}{% endif %}">
-<meta itemprop="description" content="{{ page.description }}">
+<meta itemprop="description" content="{{ seo_description }}">
 <meta itemprop="image" content="{{ site.url }}/assets/img{{ page.img }}">
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="{{ site.twitter }}">
 <meta name="twitter:title" content="{% if page.title %}{{page.title}}{% else %}{{site.title}}{% endif %}">
-<meta name="twitter:description" content="{{ page.description | truncate: 200 }}">
+<meta name="twitter:description" content="{{ seo_description | truncate: 200 }}">
 <meta name="twitter:creator" content="{{% site.twitter %}}">
 <meta data-rh="true" name="twitter:label1" content="Word count"/>
 <meta data-rh="true" name="twitter:data1" content="{{ words }}"/>

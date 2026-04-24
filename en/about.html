@@ -1,0 +1,25 @@
+---
+layout: menu-page
+lang: en
+title: About
+permalink: /en/about.html
+---
+{% include calculate_relative_base.html %}
+
+<section class="about-page">
+  <header class="about-header">
+    <h1>About</h1>
+  </header>
+
+  <section class="about-hero-grid">
+    <figure class="about-media">
+      <img src="{{ relativebase }}assets/img/about/IMG_6903.JPG" alt="{{ site.author }} taking a photo on a quiet street">
+    </figure>
+    <div class="about-copy">
+      <p>I work across Django, DevOps, automation, and practical AI workflows.</p>
+      <p>This blog is a working notebook for real implementation details: deployment paths, monitoring setups, debugging trails, and small architecture decisions.</p>
+      <p>I prefer notes that stay useful after the project ends: short context, concrete commands, failure modes, and the fix that actually worked.</p>
+      {% include social-links.html compact=true icons_only=true %}
+    </div>
+  </section>
+</section>

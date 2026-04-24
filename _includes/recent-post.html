@@ -1,12 +1,23 @@
 {% include calculate_relative_base.html %}
+{% assign is_english = false %}
+{% if page.lang == 'en' or page.collection == 'en_posts' or page.url contains '/en/' %}
+  {% assign is_english = true %}
+{% endif %}
+{% if is_english %}
+  {% assign recent_posts = site.en_posts | sort: 'date' | reverse %}
+  {% assign archive_url = '/en/archive.html' | relative_url %}
+{% else %}
+  {% assign recent_posts = site.posts %}
+  {% assign archive_url = relativebase | append: 'archive.html' %}
+{% endif %}
 
 <section class="post-section">
   <div class="section-heading-row">
-    <h2>최근 글</h2>
-    <a href="{{ relativebase }}archive.html">전체 보기</a>
+    <h2>{% if is_english %}Recent Posts{% else %}최근 글{% endif %}</h2>
+    <a href="{{ archive_url }}">{% if is_english %}View all{% else %}전체 보기{% endif %}</a>
   </div>
   <ol class="post-feed post-feed-compact">
-    {% for post in site.posts limit:4 %}
+    {% for post in recent_posts limit:4 %}
       {% if post.title %}
         {% include escape-404.html %}
         {% include remove_double_slash.html %}

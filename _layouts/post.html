@@ -2,17 +2,30 @@
 layout: default
 ---
 {% include calculate_relative_base.html %}
+{% assign is_english = false %}
+{% if page.lang == 'en' or page.collection == 'en_posts' or page.url contains '/en/' %}
+  {% assign is_english = true %}
+{% endif %}
+{% if is_english %}
+  {% assign home_url = '/en/' | relative_url %}
+  {% assign archive_url = '/en/archive.html' | relative_url %}
+  {% assign tag_url = '/en/tag.html' | relative_url %}
+{% else %}
+  {% assign home_url = relativebase %}
+  {% assign archive_url = relativebase | append: 'archive.html' %}
+  {% assign tag_url = relativebase | append: 'tag.html' %}
+{% endif %}
 <div class="site-frame">
   {% include header.html %}
   <article class="site-main shell article-shell" itemscope itemtype="https://schema.org/CreativeWork">
     {% include schema-meta.html %}
     <div class="article-breadcrumb">
-      <a href="{{ relativebase }}">홈</a>
+      <a href="{{ home_url }}">{% if is_english %}Home{% else %}홈{% endif %}</a>
       <span>/</span>
-      <a href="{{ relativebase }}archive.html">글</a>
+      <a href="{{ archive_url }}">{% if is_english %}Posts{% else %}글{% endif %}</a>
     </div>
     <header class="article-hero">
-      <p class="article-kicker">글</p>
+      <p class="article-kicker">{% if is_english %}Post{% else %}글{% endif %}</p>
       <h1 class="article-title">{{ page.title }}</h1>
       <div class="article-meta">{% include post_meta.html type="post-page-meta" %}</div>
       {% if page.description %}
@@ -24,10 +37,10 @@ layout: default
     </div>
     {% if page.tags and page.tags.size > 0 %}
       <section class="post-section">
-        <h2>태그</h2>
+        <h2>{% if is_english %}Tags{% else %}태그{% endif %}</h2>
         <div class="tag-row">
           {% for tag in page.tags %}
-            <a class="tag-chip" href="{{ relativebase }}tag.html?tag={{ tag | url_encode }}">{{ tag }}</a>
+            <a class="tag-chip" href="{{ tag_url }}?tag={{ tag | url_encode }}">{{ tag }}</a>
           {% endfor %}
         </div>
       </section>

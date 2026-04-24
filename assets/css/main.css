@@ -48,6 +48,7 @@ body {
   font-weight: 500;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
 
 img {
@@ -363,6 +364,12 @@ html[data-theme="light"] .theme-toggle-icon-moon {
   padding: 0.8rem 0 1.45rem;
 }
 
+.hero-panel-body,
+.post-feed-main {
+  min-width: 0;
+  max-width: 100%;
+}
+
 .hero-panel-about {
   padding-top: 0;
 }
@@ -391,6 +398,7 @@ html[data-theme="light"] .theme-toggle-icon-moon {
   margin-bottom: 0;
   font-size: clamp(1.95rem, 4.2vw, 2.95rem);
   font-weight: 700;
+  overflow-wrap: anywhere;
 }
 
 .hero-panel-copy {
@@ -399,6 +407,7 @@ html[data-theme="light"] .theme-toggle-icon-moon {
   font-size: 0.88rem;
   font-weight: 600;
   line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
 .hero-panel-copy-primary {
@@ -492,12 +501,20 @@ html[data-theme="light"] .theme-toggle-icon-moon {
 
 .post-feed-title {
   display: inline-block;
+  max-width: 100%;
   margin-bottom: 0.25rem;
   color: var(--accent);
   font-family: var(--font-mono);
   font-size: clamp(1.08rem, 2.2vw, 1.4rem);
   font-weight: 700;
   line-height: 1.28;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.post-feed-excerpt {
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .post-feed-title:hover {
@@ -898,25 +915,48 @@ html[data-theme="light"] .theme-toggle-icon-moon {
     font-size: 15px;
   }
 
-  .site-menu-toggle {
-    position: fixed;
-    top: 1.05rem;
-    right: 6.35rem;
-    z-index: 30;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  .shell,
+  .site-header .shell-wide {
+    width: 100vw;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  .site-header-inner {
+    min-height: 4.4rem;
+  }
+
+  .site-brand {
+    min-width: 0;
+    flex: 1;
+    padding-right: 9.5rem;
   }
 
   .site-header-actions {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
     gap: 0.35rem;
+    margin-left: 0;
+  }
+
+  .site-menu-toggle {
+    position: fixed;
+    top: 1.05rem;
+    right: 6.25rem;
+    z-index: 100;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .language-switch {
     position: fixed;
     top: 1.15rem;
     right: 1rem;
-    z-index: 30;
+    z-index: 100;
+    flex: 0 0 auto;
   }
 
   .language-switch-link {
@@ -959,6 +999,27 @@ html[data-theme="light"] .theme-toggle-icon-moon {
   .hero-panel {
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+
+  .hero-panel-body,
+  .post-section,
+  .post-feed,
+  .post-feed-card,
+  .post-feed-main {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .hero-title-row h1 {
+    font-size: clamp(1.75rem, 9vw, 2.35rem);
+  }
+
+  .hero-panel-copy,
+  .post-feed-title,
+  .post-feed-excerpt {
+    width: 100%;
+    max-width: 100%;
   }
 
   .hero-panel-avatar {

@@ -1,0 +1,43 @@
+---
+layout: home-page
+lang: en
+title: Juwon Park
+permalink: /en/
+---
+{% include calculate_relative_base.html %}
+{% assign posts = site.en_posts | sort: 'date' | reverse %}
+
+<section class="hero-panel">
+  <a class="hero-panel-avatar" href="{{ '/en/about.html' | relative_url }}">
+    <img src="{{ relativebase }}assets/img/{{ site.author-pic }}" alt="{{ site.author }}">
+  </a>
+  <div class="hero-panel-body">
+    <div class="hero-title-row">
+      <h1>Juwon Park's Engineering Blog</h1>
+    </div>
+    <p class="hero-panel-copy hero-panel-copy-primary">{{ site.description_en }}</p>
+    <p class="hero-panel-copy">Build notes from real projects: deployments, automation, monitoring, debugging, and practical AI workflows.</p>
+    {% include social-links.html compact=true icons_only=true %}
+  </div>
+</section>
+
+<div class="section-rule section-rule-bleed"></div>
+
+<section class="post-section">
+  <div class="section-heading-row section-heading-row-compact">
+    <a href="{{ '/en/archive.html' | relative_url }}">View all posts</a>
+  </div>
+  <ol class="post-feed">
+    {% for post in posts limit:6 %}
+      <li class="post-feed-item">
+        <article class="post-feed-card">
+          <div class="post-feed-main">
+            <a class="post-feed-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            <div class="post-feed-meta">{% include post_meta.html type="post-card-meta" %}</div>
+            <p class="post-feed-excerpt">{{ post.description | default: post.excerpt | strip_html | strip_newlines | truncate: 190 }}</p>
+          </div>
+        </article>
+      </li>
+    {% endfor %}
+  </ol>
+</section>

@@ -1,6 +1,7 @@
 # Site settings
 title: Juwon Park
 description: '장고, 데브옵스, 자동화, 데이터 워크플로우를 중심으로 짧고 실용적인 내용을 기록하는 블로그입니다.' # this means to ignore newlines until "baseurl:"
+description_en: 'Short, practical notes on Django, DevOps, automation, and data workflows.'
 permalink: ':title:output_ext'
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://juwonpark.me" # the base hostname & protocol for your site, e.g. http://example.com
@@ -90,3 +91,16 @@ plugins:
 
 include: [_pages]
 exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock", "package-lock.json", "assets/css/sass/", "README.md", "LICENSE", "scripts/"]
+
+collections:
+  en_posts:
+    output: true
+    permalink: /en/:name:output_ext
+
+defaults:
+  - scope:
+      path: ""
+      type: en_posts
+    values:
+      layout: post
+      lang: en

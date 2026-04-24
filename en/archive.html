@@ -1,0 +1,49 @@
+---
+layout: menu-page
+lang: en
+title: Archive
+permalink: /en/archive.html
+---
+{% include calculate_relative_base.html %}
+{% assign posts = site.en_posts | sort: 'date' | reverse %}
+
+<section class="listing-page">
+  <header class="archive-header">
+    <h1>All Posts</h1>
+    <p class="archive-intro">Browse every English post by year and month.</p>
+  </header>
+
+  {% assign year_groups = posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+  {% for year_group in year_groups %}
+    <section class="archive-year-group">
+      <div class="archive-year-heading">
+        <h2>{{ year_group.name }}</h2>
+        <span>{{ year_group.items | size }}</span>
+      </div>
+      <div class="section-rule"></div>
+
+      {% assign month_groups = year_group.items | group_by_exp: "post", "post.date | date: '%B'" %}
+      {% for month_group in month_groups %}
+        <section class="archive-month-group">
+          <div class="archive-month-heading">
+            <h3>{{ month_group.name }}</h3>
+            <span>{{ month_group.items | size }}</span>
+          </div>
+          <ol class="post-feed archive-post-feed">
+            {% for post in month_group.items %}
+              <li class="post-feed-item">
+                <article class="post-feed-card">
+                  <div class="post-feed-main">
+                    <a class="post-feed-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                    <div class="post-feed-meta">{% include post_meta.html type="post-card-meta" %}</div>
+                    <p class="post-feed-excerpt">{{ post.description | default: post.excerpt | strip_html | strip_newlines | truncate: 190 }}</p>
+                  </div>
+                </article>
+              </li>
+            {% endfor %}
+          </ol>
+        </section>
+      {% endfor %}
+    </section>
+  {% endfor %}
+</section>

@@ -1,17 +1,44 @@
 {% include calculate_relative_base.html %}
 {% include escape-404.html %}
+{% assign is_english = false %}
+{% if page.lang == 'en' or page.collection == 'en_posts' or page.url contains '/en/' %}
+  {% assign is_english = true %}
+{% endif %}
+{% if is_english %}
+  {% assign home_url = '/en/' | relative_url %}
+  {% assign archive_url = '/en/archive.html' | relative_url %}
+  {% assign about_url = '/en/about.html' | relative_url %}
+  {% assign search_url = '/en/search.html' | relative_url %}
+  {% assign en_url = page.url | relative_url %}
+  {% assign ko_path = page.url | replace_first: '/en', '' %}
+  {% if ko_path == '' %}
+    {% assign ko_path = '/' %}
+  {% endif %}
+  {% assign ko_url = ko_path | relative_url %}
+{% else %}
+  {% assign home_url = relativebase %}
+  {% assign archive_url = relativebase | append: 'archive.html' %}
+  {% assign about_url = relativebase | append: 'about.html' %}
+  {% assign search_url = relativebase | append: 'search.html' %}
+  {% assign en_path = '/en' | append: page.url %}
+  {% if page.url == '/' %}
+    {% assign en_path = '/en/' %}
+  {% endif %}
+  {% assign en_url = en_path | relative_url %}
+  {% assign ko_url = page.url | relative_url %}
+{% endif %}
 
 <header class="site-header">
   <div class="shell shell-wide site-header-inner">
-    <a class="site-brand" href="{{ relativebase }}">{{ site.title }}</a>
+    <a class="site-brand" href="{{ home_url }}">{{ site.title }}</a>
     <div class="site-header-actions">
       <nav class="site-nav" id="site-menu">
-        <a href="{{ relativebase }}archive.html" class="{% if page.url contains 'archive' or page.url contains 'tag' or page.url contains 'tags' %}active-nav{% endif %}">Posts</a>
-        <a href="{{ relativebase }}about.html" class="{% if page.url contains 'about' %}active-nav{% endif %}">About</a>
-        <a class="nav-icon-link {% if page.url contains 'search' %}active-icon{% endif %}" href="{{ relativebase }}search.html" aria-label="Search">
+        <a href="{{ archive_url }}" class="{% if page.url contains 'archive' or page.url contains 'tag' or page.url contains 'tags' %}active-nav{% endif %}">Posts</a>
+        <a href="{{ about_url }}" class="{% if page.url contains 'about' %}active-nav{% endif %}">About</a>
+        <a class="nav-icon-link {% if page.url contains 'search' %}active-icon{% endif %}" href="{{ search_url }}" aria-label="Search">
           <i class="fa fa-search" aria-hidden="true"></i>
         </a>
-        <button class="theme-toggle-button" id="theme-toggle" type="button" aria-label="테마 변경">
+        <button class="theme-toggle-button" id="theme-toggle" type="button" aria-label="{% if is_english %}Change theme{% else %}테마 변경{% endif %}">
           <span class="theme-toggle-icon theme-toggle-icon-sun"><i class="fa fa-sun-o" aria-hidden="true"></i></span>
           <span class="theme-toggle-icon theme-toggle-icon-moon"><i class="fa fa-moon-o" aria-hidden="true"></i></span>
         </button>
@@ -19,10 +46,9 @@
       <button class="site-menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
         <span>Menu</span>
       </button>
-      {% assign translate_host = site.url | replace: 'https://', '' | replace: 'http://', '' %}
-      <div class="language-switch" aria-label="언어 선택">
-        <a class="language-switch-link" href="https://translate.kagi.com/{{ translate_host }}{{ page.url }}?to=en">EN</a>
-        <a class="language-switch-link is-active" href="{{ page.url | relative_url }}">KO</a>
+      <div class="language-switch" aria-label="{% if is_english %}Language{% else %}언어 선택{% endif %}">
+        <a class="language-switch-link {% if is_english %}is-active{% endif %}" href="{{ en_url }}">EN</a>
+        <a class="language-switch-link {% unless is_english %}is-active{% endunless %}" href="{{ ko_url }}">KO</a>
       </div>
     </div>
   </div>

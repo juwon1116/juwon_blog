@@ -99,10 +99,11 @@
   var searchInput = document.getElementById('search-input');
   var resultsContainer = document.getElementById('results-container');
   if (searchInput && resultsContainer && window.SimpleJekyllSearch) {
+    var searchJsonPath = {% if page.lang == 'en' or page.collection == 'en_posts' or page.url contains '/en/' %}'{{ "/en/search.json" | relative_url }}'{% else %}'{{ relativebase }}search.json'{% endif %};
     SimpleJekyllSearch({
       searchInput: searchInput,
       resultsContainer: resultsContainer,
-      json: '{{ relativebase }}search.json',
+      json: searchJsonPath,
       searchResultTemplate: '<li><a href="{url}" title="{description}">{title}</a><p>{description}</p></li>',
       noResultsText: 'No results found',
       fuzzy: false,
