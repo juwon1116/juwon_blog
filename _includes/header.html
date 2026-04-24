@@ -4,19 +4,26 @@
 <header class="site-header">
   <div class="shell shell-wide site-header-inner">
     <a class="site-brand" href="{{ relativebase }}">{{ site.title }}</a>
-    <button class="site-menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
-      <span>Menu</span>
-    </button>
-    <nav class="site-nav" id="site-menu">
-      <a href="{{ relativebase }}archive.html" class="{% if page.url contains 'archive' or page.url contains 'tag' or page.url contains 'tags' %}active-nav{% endif %}">Posts</a>
-      <a href="{{ relativebase }}about.html" class="{% if page.url contains 'about' %}active-nav{% endif %}">About</a>
-      <a class="nav-icon-link {% if page.url contains 'search' %}active-icon{% endif %}" href="{{ relativebase }}search.html" aria-label="Search">
-        <i class="fa fa-search" aria-hidden="true"></i>
-      </a>
-      <button class="theme-toggle-button" id="theme-toggle" type="button" aria-label="테마 변경">
-        <span class="theme-toggle-icon theme-toggle-icon-sun"><i class="fa fa-sun-o" aria-hidden="true"></i></span>
-        <span class="theme-toggle-icon theme-toggle-icon-moon"><i class="fa fa-moon-o" aria-hidden="true"></i></span>
+    <div class="site-header-actions">
+      <nav class="site-nav" id="site-menu">
+        <a href="{{ relativebase }}archive.html" class="{% if page.url contains 'archive' or page.url contains 'tag' or page.url contains 'tags' %}active-nav{% endif %}">Posts</a>
+        <a href="{{ relativebase }}about.html" class="{% if page.url contains 'about' %}active-nav{% endif %}">About</a>
+        <a class="nav-icon-link {% if page.url contains 'search' %}active-icon{% endif %}" href="{{ relativebase }}search.html" aria-label="Search">
+          <i class="fa fa-search" aria-hidden="true"></i>
+        </a>
+        <button class="theme-toggle-button" id="theme-toggle" type="button" aria-label="테마 변경">
+          <span class="theme-toggle-icon theme-toggle-icon-sun"><i class="fa fa-sun-o" aria-hidden="true"></i></span>
+          <span class="theme-toggle-icon theme-toggle-icon-moon"><i class="fa fa-moon-o" aria-hidden="true"></i></span>
+        </button>
+      </nav>
+      <button class="site-menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+        <span>Menu</span>
       </button>
-    </nav>
+      {% capture current_url %}{{ site.url }}{{ site.baseurl }}{{ page.url }}{% endcapture %}
+      <div class="language-switch" aria-label="언어 선택">
+        <a class="language-switch-link" href="https://translate.google.com/translate?sl=ko&amp;tl=en&amp;u={{ current_url | url_encode }}">EN</a>
+        <a class="language-switch-link is-active" href="{{ page.url | relative_url }}">KO</a>
+      </div>
+    </div>
   </div>
 </header>
