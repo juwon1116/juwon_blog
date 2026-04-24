@@ -19,9 +19,9 @@
       <button class="site-menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
         <span>Menu</span>
       </button>
-      {% capture current_url %}{{ site.url }}{{ site.baseurl }}{{ page.url }}{% endcapture %}
+      {% assign translate_host = site.url | replace: 'https://', '' | replace: 'http://', '' %}
       <div class="language-switch" aria-label="언어 선택">
-        <a class="language-switch-link" href="https://translate.google.com/translate?sl=ko&amp;tl=en&amp;u={{ current_url | url_encode }}">EN</a>
+        <a class="language-switch-link" href="https://translate.kagi.com/{{ translate_host }}{{ page.url }}?to=en">EN</a>
         <a class="language-switch-link is-active" href="{{ page.url | relative_url }}">KO</a>
       </div>
     </div>
