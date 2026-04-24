@@ -8,6 +8,29 @@
   var menuToggle = document.querySelector('.site-menu-toggle');
   var menu = document.getElementById('site-menu');
   var storedTheme = localStorage.getItem('theme');
+  var urlParams = new URLSearchParams(window.location.search);
+  var legacyTranslateParams = ['to', '_x_tr_sl', '_x_tr_tl', '_x_tr_hl', '_x_tr_pto'];
+  var hasLegacyTranslateParam = legacyTranslateParams.some(function(key) {
+    return urlParams.has(key);
+  });
+
+  if (hasLegacyTranslateParam) {
+    var targetLang = urlParams.get('to') || urlParams.get('_x_tr_tl');
+
+    legacyTranslateParams.forEach(function(key) {
+      urlParams.delete(key);
+    });
+
+    if (targetLang === 'en' && !window.location.pathname.startsWith('/en/')) {
+      var englishPath = window.location.pathname === '/' ? '/en/' : '/en' + window.location.pathname;
+      var englishQuery = urlParams.toString();
+      window.location.replace(englishPath + (englishQuery ? '?' + englishQuery : '') + window.location.hash);
+      return;
+    }
+
+    var cleanQuery = urlParams.toString();
+    window.history.replaceState({}, '', window.location.pathname + (cleanQuery ? '?' + cleanQuery : '') + window.location.hash);
+  }
 
   if (!root.dataset.theme) {
     root.dataset.theme = storedTheme === 'light' ? 'light' : 'dark';
