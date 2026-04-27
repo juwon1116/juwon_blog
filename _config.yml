@@ -8,6 +8,7 @@ url: "https://juwonpark.me" # the base hostname & protocol for your site, e.g. h
 logo: "/assets/img/branding/MVM-logo-full.svg"
 logo-icon: "/assets/img/branding/MVM-symbol.svg"
 logo-icon-SEO: "/assets/img/branding/MVM-symbol-black.png" # must be a non SVG file
+og-image-default: "/assets/img/branding/blog-og-a.png"
 
 # Night/Dark mode
 # Default mode is "auto", "auto" is for auto nightshift

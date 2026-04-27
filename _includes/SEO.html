@@ -7,6 +7,14 @@
     {% assign seo_description = site.description %}
   {% endif %}
 {% endif %}
+{% assign seo_image = page.img %}
+{% if seo_image == nil or seo_image == "" %}
+  {% assign seo_image = site.og-image-default %}
+{% elsif seo_image contains '://' %}
+{% elsif seo_image | slice: 0, 1 == '/' %}
+{% else %}
+  {% assign seo_image = '/assets/img/' | append: seo_image %}
+{% endif %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -18,7 +26,7 @@
   "abstract": "{{ seo_description }}",
     "keywords": "{% for tag in page.tags %}{{tag}}{% if forloop.last == false %}, {% endif %}{% endfor %}",
     "wordcount": "{{ words }}",
-    "image": ["{{ site.url }}/assets/img{{ page.img }}"],
+    "image": ["{{ site.url }}{{ seo_image }}"],
   "datePublished": "{{ page.date }}",
   "dateModified": "{{ page.date }}",
   "author": {
@@ -39,7 +47,7 @@
 <meta property="og:type" content="article"/>
 <meta property="og:title" content="{% if page.title %}{{page.title}}{% else %}{{site.title}}{% endif %}"/>
 <meta property="og:description" content="{{ seo_description }}"/>
-<meta property="og:image" content="{{ site.url }}/assets/img{{ page.img }}"/>
+<meta property="og:image" content="{{ site.url }}{{ seo_image }}"/>
 <meta property="og:image:alt" content="{{page.title}}"/>
 <meta property="og:site_name" content="{{site.title}}" />
 <meta property="article:published_time" content="{{ page.date }}" />
@@ -49,13 +57,17 @@
 <!-- Schema.org markup for Google -->
 <meta itemprop="name" content="{% if page.title %}{{page.title}}{% else %}{{site.title}}{% endif %}">
 <meta itemprop="description" content="{{ seo_description }}">
-<meta itemprop="image" content="{{ site.url }}/assets/img{{ page.img }}">
+<meta itemprop="image" content="{{ site.url }}{{ seo_image }}">
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
+{% if site.twitter and site.twitter != "" %}
 <meta name="twitter:site" content="{{ site.twitter }}">
+{% endif %}
 <meta name="twitter:title" content="{% if page.title %}{{page.title}}{% else %}{{site.title}}{% endif %}">
 <meta name="twitter:description" content="{{ seo_description | truncate: 200 }}">
-<meta name="twitter:creator" content="{{% site.twitter %}}">
+{% if site.twitter and site.twitter != "" %}
+<meta name="twitter:creator" content="{{ site.twitter }}">
+{% endif %}
 <meta data-rh="true" name="twitter:label1" content="Word count"/>
 <meta data-rh="true" name="twitter:data1" content="{{ words }}"/>
-<meta name="twitter:image:src" content="{{ site.url }}/assets/img/{{ page.img }}">
+<meta name="twitter:image:src" content="{{ site.url }}{{ seo_image }}">
