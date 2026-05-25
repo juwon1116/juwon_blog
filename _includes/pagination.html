@@ -1,8 +1,44 @@
-<div class="pagination">
-  {% if paginator.previous_page %}
-    <a href="..{{ paginator.previous_page_path }}" class="previous">최신 글</a>
-  {% endif %}
-  {% if paginator.next_page %}
-    <a href="..{{ paginator.next_page_path }}" class="next">이전 글</a>
-  {% endif %}
-</div>
+{% if paginator and paginator.total_pages > 1 %}
+  {% assign current = paginator.page %}
+  {% assign total = paginator.total_pages %}
+  {% assign total_minus_one = total | minus: 1 %}
+  {% assign total_minus_two = total | minus: 2 %}
+
+  <nav class="pagination" aria-label="페이지네이션">
+    {% if paginator.previous_page %}
+      <a href="{{ paginator.previous_page_path | relative_url }}" class="pagination-link pagination-newer" aria-label="최신글">&#8249;</a>
+    {% else %}
+      <span class="pagination-link pagination-disabled" aria-label="최신글">&#8249;</span>
+    {% endif %}
+
+    <ol class="pagination-pages">
+      {% for page_number in (1..total) %}
+        {% assign diff = page_number | minus: current %}
+        {% if diff < 0 %}{% assign diff = 0 | minus: diff %}{% endif %}
+
+        {% if page_number == 1 or page_number == total or diff <= 1 %}
+          <li>
+            {% if page_number == current %}
+              <span class="pagination-page pagination-current" aria-current="page">{{ page_number }}</span>
+            {% elsif page_number == 1 %}
+              <a class="pagination-page" href="{{ '/' | relative_url }}">{{ page_number }}</a>
+            {% else %}
+              {% assign page_path = site.paginate_path | replace: ':num', page_number %}
+              <a class="pagination-page" href="{{ page_path | relative_url }}">{{ page_number }}</a>
+            {% endif %}
+          </li>
+        {% elsif page_number == 2 and current > 3 %}
+          <li><span class="pagination-ellipsis" aria-hidden="true">&hellip;</span></li>
+        {% elsif page_number == total_minus_one and current < total_minus_two %}
+          <li><span class="pagination-ellipsis" aria-hidden="true">&hellip;</span></li>
+        {% endif %}
+      {% endfor %}
+    </ol>
+
+    {% if paginator.next_page %}
+      <a href="{{ paginator.next_page_path | relative_url }}" class="pagination-link pagination-older" aria-label="이전글">&#8250;</a>
+    {% else %}
+      <span class="pagination-link pagination-disabled" aria-label="이전글">&#8250;</span>
+    {% endif %}
+  </nav>
+{% endif %}

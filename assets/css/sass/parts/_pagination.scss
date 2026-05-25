@@ -1,19 +1,103 @@
 .pagination {
-  margin-bottom: 30px;
-  .previous {
-    float: left;
+  display: grid;
+  grid-template-columns: minmax(5.5rem, 1fr) auto minmax(5.5rem, 1fr);
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.pagination-pages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.pagination-link,
+.pagination-page {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.2rem;
+  color: var(--text-faint);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.pagination-link {
+  white-space: nowrap;
+  font-size: 1.2rem;
+  min-width: 2.2rem;
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+}
+
+.pagination-older {
+  justify-self: start;
+}
+
+.pagination-newer {
+  justify-self: end;
+}
+
+.pagination-page {
+  min-width: 2.2rem;
+  padding: 0 0.65rem;
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+}
+
+.pagination-current {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--panel);
+  font-weight: 700;
+}
+
+.pagination-ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.2rem;
+  min-width: 1.5rem;
+  color: var(--text-faint);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+.pagination-disabled {
+  opacity: 0.3;
+  cursor: default;
+  pointer-events: none;
+}
+
+a.pagination-link,
+a.pagination-page {
+  &:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--panel);
   }
-  .next {
-    float: right;
+}
+
+@media (max-width: 520px) {
+  .pagination {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 0.75rem;
   }
-  .previous, .next {
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 14px;
-    color: $dark-gray;
-    &:hover {
-      opacity: .8;
-      color: $dark-pink;
-    }
+
+  .pagination-older,
+  .pagination-newer {
+    justify-self: center;
   }
 }

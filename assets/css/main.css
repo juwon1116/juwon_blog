@@ -207,7 +207,8 @@ td {
 .author-card-kicker,
 .post-feed-meta,
 .article-meta,
-.pagination a,
+.pagination-link,
+.pagination-page,
 .site-footer-note,
 .section-heading-row > a {
   font-family: var(--font-mono);
@@ -827,8 +828,7 @@ html[data-theme="light"] .theme-toggle-icon-moon {
 }
 
 .results-search li,
-.list-group,
-.pagination {
+.list-group {
   border-top: 1px solid var(--border);
 }
 
@@ -871,17 +871,91 @@ html[data-theme="light"] .theme-toggle-icon-moon {
 }
 
 .pagination {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(5.5rem, 1fr) auto minmax(5.5rem, 1fr);
+  align-items: center;
   gap: 1rem;
   margin-top: 2.5rem;
   padding-top: 1rem;
+  border-top: 1px solid var(--border);
 }
 
-.pagination a {
+.pagination-pages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.pagination-link,
+.pagination-page {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.2rem;
   color: var(--text-faint);
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.pagination-link {
+  white-space: nowrap;
+  min-width: 2.2rem;
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  font-size: 1.2rem;
+}
+
+.pagination-older {
+  justify-self: start;
+}
+
+.pagination-newer {
+  justify-self: end;
+}
+
+.pagination-page {
+  min-width: 2.2rem;
+  padding: 0 0.65rem;
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+}
+
+.pagination-current {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--panel);
+  font-weight: 700;
+}
+
+.pagination-ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.2rem;
+  min-width: 1.5rem;
+  color: var(--text-faint);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+.pagination-disabled {
+  opacity: 0.3;
+  cursor: default;
+  pointer-events: none;
+}
+
+a.pagination-link:hover,
+a.pagination-page:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--panel);
 }
 
 .site-footer {
@@ -1052,6 +1126,17 @@ html[data-theme="light"] .theme-toggle-icon-moon {
 @media (max-width: 520px) {
   .shell {
     padding: 0 1rem;
+  }
+
+  .pagination {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 0.75rem;
+  }
+
+  .pagination-older,
+  .pagination-newer {
+    justify-self: center;
   }
 
   .site-header-inner {
